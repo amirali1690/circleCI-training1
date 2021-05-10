@@ -43,16 +43,17 @@ jobs:
           command:
             echo "text to output here" > output.txt
       - persist_to_workspace:
-        root: /tmp/
-        path:
-          - output.txt
+          root: /tmp/
+          paths:
+            - output.txt
   print_output_file:
     docker:
       - image: circleci/node:13.8.0
     steps:
+
       - checkout
       - attach_workspace:
-          at: /tmp/output.txt
+          at: /tmp/
       - run:
           name: echo world
           command:
@@ -69,3 +70,4 @@ workflows:
           requires:
             - print-world
       - save_hello_world_output
+      - print_output_file
