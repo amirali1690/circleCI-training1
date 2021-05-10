@@ -41,7 +41,7 @@ jobs:
       - run:
           name: echo world
           command:
-            echo "text to output here" > output.txt
+            echo "text to output here" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -71,3 +71,5 @@ workflows:
     #        - print-world
       - save_hello_world_output
       - print_output_file
+        requires:
+            - save_hello_world_output
