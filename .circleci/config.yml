@@ -38,3 +38,6 @@ workflows:
       - print-hello
       - print-world:
           requires: [print-hello]
+      - print-name:
+          requires:
+            - print-world
