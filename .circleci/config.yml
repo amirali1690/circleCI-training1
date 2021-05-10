@@ -63,13 +63,7 @@ workflows:
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      #- print-hello
-      #- print-world:
-    #      requires: [print-hello]
-    #  - print-name:
-    #      requires:
-    #        - print-world
       - save_hello_world_output
       - print_output_file
-           requires:
-             - save_hello_world_output
+          requires:
+            - save_hello_world_output
