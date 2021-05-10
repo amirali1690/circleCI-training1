@@ -11,17 +11,17 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - run:
-        name: echo hello
-        commmand:
-          echo "Hello"
+          name: echo hello
+          command:
+            echo "Hello"
   print-world:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - run:
-        name: echo world
-        commmand:
-          echo "world"
+          name: echo world
+          command:
+            echo "world"
 workflows:
   # Name the workflow "welcome"
   welcome:
@@ -29,4 +29,4 @@ workflows:
     jobs:
       - print-hello
       - print-world:
-          requires:[print-hello]
+          requires: [print-hello]
