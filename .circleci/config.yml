@@ -22,6 +22,14 @@ jobs:
           name: echo world
           command:
             echo world
+  print-name:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - run:
+          name: echo world
+          command:
+            echo <<ownername>>
 workflows:
   # Name the workflow "welcome"
   welcome:
