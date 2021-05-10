@@ -66,9 +66,9 @@ workflows:
       #- print-hello
       #- print-world:
     #      requires: [print-hello]
-      - print-name:
-          requires:
-            - print-world
+    #  - print-name:
+    #      requires:
+    #        - print-world
       - save_hello_world_output
       - print_output_file:
           requires:
