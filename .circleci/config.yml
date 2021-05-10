@@ -57,12 +57,18 @@ jobs:
       - run:
           name: echo world
           command:
-            cat cat ~/output.txt
+            cat ~/output.txt
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
+      #- print-hello
+      #- print-world:
+    #      requires: [print-hello]
+      - print-name:
+          requires:
+            - print-world
       - save_hello_world_output
       - print_output_file
           requires:
