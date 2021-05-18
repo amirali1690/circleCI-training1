@@ -5,7 +5,7 @@ commands:
   print_pipeline_id:
     description: "Print Pipeline ID"
     steps:
-      - run: return 1
+      - run: exit 1
       - run:
           name: echo workflow id
           command:
