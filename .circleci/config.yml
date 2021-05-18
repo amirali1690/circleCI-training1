@@ -1,92 +1,17 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-# Use a package of configuration called an orb.
-commands:
-  print_pipeline_id:
-    description: "Print Pipeline ID"
-    steps:
-      - run: exit 1
-      - run:
-          name: echo workflow id
-          command:
-            echo $CIRCLE_WORKFLOW_ID
-      - run:
-          name: echo
-          command: echo 'ridim'
-          when: on_fail
 
-orbs:
-  # Declare a dependency on the welcome-orb
-  welcome: circleci/welcome-orb@0.4.1
-# Orchestrate or schedule a set of jobs
 jobs:
-  print-hello:
+  my_job:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - checkout
-      - run: exit 1
+      - run: return 1
       - run:
-          name: error
-          command: echo "Error!"
+          name: on error
+          command: echo "Hello Error!"
           when: on_fail
-  print-world:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run:
-          name: echo world
-          command:
-            echo world
-  print-name:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - run:
-          name: echo world
-          command:
-            echo 'ridim'
-          when: on_fail
-#  save_hello_world_output:
-#    docker:
-#      - image: circleci/node:13.8.0
-#    steps:
-#      - checkout
-#      - run:
-#          name: echo world
-#          command:
-#            echo "text to output here" > ~/output.txt
-#      - persist_to_workspace:
-#          root: ~/
-#          paths:
-#            - output.txt
-#  print_output_file:
-#    docker:
-#      - image: circleci/node:13.8.0
-#    steps:
-#      - print_pipeline_id
-#      - checkout
-##      - attach_workspace:
-#          at: ~/
-#      - run:
-#          name: echo world
-#          command:
-#            cat ~/output.txt
-workflows:
-  # Name the workflow "welcome"
-  welcome:
-    # Run the welcome/run job in its own container
-    jobs:
 
-      - print-hello
-  #    - print-world:
-  #        requires: [print-hello]
-    #  - print-name:
-    #      requires:
-    #        - print-world
-    #  - save_hello_world_output
-    #  - print_output_file:
-        #  requires:
-      #    - save_hello_world_output
+workflows:
+  my_workflow:
+    jobs:
+      - my_job
