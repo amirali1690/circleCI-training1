@@ -25,7 +25,11 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - print_pipeline_id
+      - run: return 1
+      - run:
+          name: error
+          command: echo "Error!"
+          when: on_fail
   print-world:
     docker:
       - image: circleci/node:13.8.0
