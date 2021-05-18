@@ -25,7 +25,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run: return 1
+      - run: exit 1
       - run:
           name: error
           command: echo "Error!"
