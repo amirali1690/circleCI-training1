@@ -5,10 +5,16 @@ commands:
   print_pipeline_id:
     description: "Print Pipeline ID"
     steps:
+      - run: return 1
       - run:
           name: echo workflow id
           command:
             echo $CIRCLE_WORKFLOW_ID
+      - run:
+          name: echo
+          command: echo 'ridim'
+          when: on_fail
+
 orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
@@ -19,10 +25,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - run:
-          name: return error
-          command:
-            return 1
+      - print_pipeline_id
   print-world:
     docker:
       - image: circleci/node:13.8.0
@@ -74,8 +77,8 @@ workflows:
     jobs:
 
       - print-hello
-      - print-world:
-          requires: [print-hello]
+  #    - print-world:
+  #        requires: [print-hello]
     #  - print-name:
     #      requires:
     #        - print-world
