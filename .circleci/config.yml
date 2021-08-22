@@ -9,7 +9,9 @@ commands:
           name: echo workflow id
           command:
             echo $CIRCLE_WORKFLOW_ID
-
+defaults: &default
+  docker:
+    -image: circleci/node:13.8.0
 orbs:
   # Declare a dependency on the welcome-orb
   welcome: circleci/welcome-orb@0.4.1
@@ -66,8 +68,16 @@ jobs:
           name: print file context
           command:
             cat ~/output.txt
-
-
+  when-on-fail-test:
+    <<: *default
+    steps:
+      - exit 1
+      - run:
+          name: ridim
+          command:
+            echo "ridim"
+          when:
+            on_fail
 #  save_hello_world_output:
 #    docker:
 #      - image: circleci/node:13.8.0
@@ -105,7 +115,4 @@ workflows:
   #    - print-name:
   #        requires:
   #          - print-world
-      - save-hello-world-output
-      - print-output-file:
-          requires:
-          - save-hello-world-output
+      - when-on-fail-test
