@@ -57,7 +57,8 @@ jobs:
             echo "it is a test to add text to a workspace file" > output.txt
       - persist_to_workspace:
           root: .
-          path: output.txt
+          paths:
+            - .
   print-output-file:
     docker:
       - image: circleci/node:13.8.0
@@ -102,15 +103,13 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
 
-      - print-hello
-      - print-world:
-          requires: [print-hello]
-      - print-name:
-          requires:
-            - print-world
+  #    - print-hello
+  #    - print-world:
+  #        requires: [print-hello]
+  #    - print-name:
+  #        requires:
+  #          - print-world
       - save-hello-world-output:
-          requires:
-            - print-name
       - print-output-file:
           requires:
           - save-hello-world-output
