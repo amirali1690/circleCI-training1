@@ -109,7 +109,7 @@ workflows:
   #    - print-name:
   #        requires:
   #          - print-world
-      - save-hello-world-output:
+      - save-hello-world-output
       - print-output-file:
           requires:
           - save-hello-world-output
