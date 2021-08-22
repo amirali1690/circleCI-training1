@@ -24,11 +24,9 @@ jobs:
     docker:
       - image: circleci/node:13.8.0
     steps:
-      - run: exit 1
       - run:
           name: error
-          command: echo "Error!"
-          when: on_fail
+          command: echo "hello"
   print-world:
     docker:
       - image: circleci/node:13.8.0
