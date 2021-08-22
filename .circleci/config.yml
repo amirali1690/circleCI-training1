@@ -69,7 +69,7 @@ jobs:
       - run:
           name: print file context
           command:
-            cat output.txt
+            cat ~/output.txt
 
 
 #  save_hello_world_output:
