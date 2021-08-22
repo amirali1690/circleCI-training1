@@ -108,9 +108,9 @@ workflows:
       - print-name:
           requires:
             - print-world
-      - save_hello_world_output:
+      - save-hello-world-output:
           requires:
             - print-name
-      - print_output_file:
+      - print-output-file:
           requires:
           - save_hello_world_output
