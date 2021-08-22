@@ -71,7 +71,8 @@ jobs:
   when-on-fail-test:
     <<: *default
     steps:
-      - exit 1
+      - run:
+          command: exit 1
       - run:
           name: ridim
           command:
