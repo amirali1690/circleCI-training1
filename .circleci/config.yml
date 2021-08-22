@@ -55,7 +55,7 @@ jobs:
           name: echo text to a file
           command:
             echo "it is a test to add text to a workspace file" > output.txt
-      - persist_to_workout:
+      - persist_to_workspace:
           root: .
           path: output.txt
   print-output-file:
