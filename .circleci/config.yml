@@ -54,18 +54,18 @@ jobs:
       - run:
           name: echo text to a file
           command:
-            echo "it is a test to add text to a workspace file" > output.txt
+            echo "it is a test to add text to a workspace file" > ~/output.txt
       - persist_to_workspace:
-          root: .
+          root: ~/
           paths:
-            - .
+            - output.txt
   print-output-file:
     docker:
       - image: circleci/node:13.8.0
     steps:
       - checkout
       - attach_workspace:
-          at: .
+          at: ~/
       - run:
           name: print file context
           command:
